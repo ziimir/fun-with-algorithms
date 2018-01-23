@@ -1,5 +1,9 @@
+const rewire = require('rewire');
 const { expect } = require('chai');
-const { merge, mergeSort } = require('./merge-sort');
+const mergeSortModule = rewire('./merge-sort');
+
+const mergeSort = require('./merge-sort');
+const merge = mergeSortModule.__get__('merge');
 
 describe('Merge sort', () => {
     describe('Merge two sorted arrays from smallest to greater', () => {

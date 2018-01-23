@@ -39,4 +39,4 @@ function mergeSort(arr) {
     return arr;
 }
 
-module.exports = { merge, mergeSort };
+module.exports = mergeSort;
