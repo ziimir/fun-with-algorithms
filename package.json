@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha ./**/*.test.js"
+    "test": "nyc mocha src/**/*.test.js"
   },
   "author": "ziimir",
   "license": "ISC",

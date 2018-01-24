@@ -15,7 +15,7 @@ function merge(left, right) {
         if (left[l] <= right[r]) {
             arr.push(left[l]);
             l = l + 1;
-        } else if (left[l] > right[r]) {
+        } else {
             arr.push(right[r]);
             r = r + 1;
         }
