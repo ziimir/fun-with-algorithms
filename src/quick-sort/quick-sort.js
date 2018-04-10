@@ -1,44 +1,39 @@
-function partition(array, start, end) {
-    let leftBorder = start - 1;
-    let rightBorder = start - 1;
+function partition(arr, start, end) {
+    if (end - start < 1) {
+        return;
+    }
+
     let pivotBorder = end;
-    let unknownBorder = start;
+    let lessBorder = start - 1;
+    let greaterBorder = start - 1;
 
-    let pivot = array[pivotBorder];
+    for (let i = start; i < end; i++) {
+        if (arr[i] <= arr[pivotBorder]) {
+            lessBorder++;
+            greaterBorder++;
 
-    for (; unknownBorder <= end - 1; unknownBorder++) {
-        let current = array[unknownBorder];
-
-        if (current <= pivot) {
-            rightBorder++;
-            leftBorder++;
-
-            let tmp = array[rightBorder];
-            array[rightBorder] = array[leftBorder];
-            array[leftBorder] = tmp;
+            let tmp = arr[lessBorder];
+            arr[lessBorder] = arr[greaterBorder];
+            arr[greaterBorder] = tmp;
         } else {
-            rightBorder++;
+            greaterBorder++;
         }
     }
 
-    array[pivotBorder] = array[leftBorder + 1];
-    array[leftBorder + 1] = pivot;
+    let newPivotIndex = lessBorder + 1;
 
-    pivotBorder = leftBorder + 1;
+    let tmp = arr[newPivotIndex];
+    arr[newPivotIndex] = arr[pivotBorder];
+    arr[pivotBorder] = tmp;
 
-    if ((pivotBorder - 1) - start > 0) {
-        partition(array, start, pivotBorder - 1);
-    }
-
-    if (end - (pivotBorder + 1) > 0) {
-        partition(array, pivotBorder + 1, end);
-    }
+    partition(arr, start, newPivotIndex - 1);
+    partition(arr, newPivotIndex + 1, end);
 }
 
-function quickSort(array, length) {
-    partition(array, 0, length - 1);
+function quickSort(arr, n) {
+    partition(arr, 0, n - 1);
 
-    return array;
+    return arr;
 }
 
 module.exports = quickSort;
